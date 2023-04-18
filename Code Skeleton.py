@@ -17,9 +17,8 @@ def analyzeData():
     print("Analyzing data")
 
 
-def checkForBenfordsLaw():
+def getSalesDictionary():
     numbers = { }
-    amountOfLines = 0
 
     # Open the sales.csv file and read each line, line by line
     with open("sales.csv") as openedFile:
@@ -33,8 +32,5 @@ def checkForBenfordsLaw():
             else:
                 numbers[numberToAdd] = 1
 
-        
+    return numbers # Return the dictionary full of the keys and values
 
-
-
-checkForBenfordsLaw()
