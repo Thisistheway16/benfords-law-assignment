@@ -1,3 +1,6 @@
+from operator import itemgetter
+
+
 def printMenu():
     """
 This function prints the menu options for the customer and sales system.
@@ -17,7 +20,8 @@ def analyzeData():
     print("Analyzing data")
 
 
-def getSalesDictionary():
+def salesDictionary():
+    '''Returns a dictionary containing numbers 1 through 9 as the keys, and their values are the amount of time each number appears'''
     numbers = { }
 
     # Open the sales.csv file and read each line, line by line
@@ -34,3 +38,23 @@ def getSalesDictionary():
 
     return numbers # Return the dictionary full of the keys and values
 
+
+def isFraud(localDictionary):
+    '''Takes in a Dictionary and checks if the number 1 appears at least 29%, up to 32% of the time. Returns False if so, and Yes otherwise'''
+
+    totalAmountOfNumbers = 0 # Represents the total amount of actual sales there are
+    amountOfTimesOneAppeared = localDictionary['1']
+
+    
+    for item in localDictionary:
+        # Add all numbers together
+        totalAmountOfNumbers += localDictionary[item]
+
+    # Divide the amount of times 1 appeared by the total amount of numbers for the percentage that 1 appeared
+    percentageOfTimesOneAppeared = amountOfTimesOneAppeared / totalAmountOfNumbers
+
+    # Check if the amount of times one appeared is between 0.29 and 0.32. If it is, return FALSE, as its likely not fraud. IF it doesn't, return TRUE as it likely is fraud
+    if 0.29 <= percentageOfTimesOneAppeared <= 0.32:
+        return False
+    else:
+        return True
