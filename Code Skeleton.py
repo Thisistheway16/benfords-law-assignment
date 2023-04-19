@@ -26,15 +26,26 @@ def printMenu():
     """
 This function prints the menu options for the customer and sales system.
     """
-    print('''
-          Customer and Sales System\n
-          1. Enter Customer Information\n
-          2. Generate Customer data file\n
-          3. Report on total Sales (Not done in this part)\n
-          4. Check for fraud in sales data (Not done in this part)\n
-          9. Quit\n
-          Enter menu option (1-9)
-          ''')
+    userInput = ""
+    loadDataOption = "1"
+    dataAnalysisOption = "2"
+    exitCondition = "3"
+
+    while userInput != exitCondition:
+        print('''
+===Welcome===
+1. Load Data\n
+2. Analyze Data (Check For Fraud)\n
+3. Quit\n
+        ''')
+        userInput = input("> ")        
+
+        if userInput == loadDataOption:
+            loadData()
+        elif userInput == dataAnalysisOption: 
+            analyzeData()
+        else:
+            print("Please type in a valid option (A number from 1-3)")
 
 def salesDictionaryCount():
     '''Returns a dictionary containing numbers 1 through 9 as the keys, and their values are the amount of time each number appears'''
@@ -110,7 +121,7 @@ def isFraud():
     else:
         return True
 
-def checkForFraud():
+def analyzeData():
     '''Show the graph, and check for fraud'''
     showGraph(isFraud())
 
@@ -129,3 +140,5 @@ def showGraph(fraud = False):
     plt.ylabel("Percent")
     plt.title("Leading Digit Distribution")
     plt.show()
+
+printMenu()
