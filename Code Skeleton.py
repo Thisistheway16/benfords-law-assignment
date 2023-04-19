@@ -72,9 +72,10 @@ def salesDictionaryPercent():
 
 
 
-def isFraud(localDictionary):
-    '''Takes in a Dictionary and checks if the number 1 appears at least 29%, up to 32% of the time. Returns False if so, and Yes otherwise'''
+def isFraud():
+    '''Checks if the number 1 appears at least 29%, up to 32% of the time. Returns False if so, and Yes otherwise'''
 
+    localDictionary = salesDictionaryCount()
     totalAmountOfNumbers = 0 # Represents the total amount of actual sales there are
     amountOfTimesOneAppeared = localDictionary['1']
 
@@ -94,19 +95,20 @@ def isFraud(localDictionary):
 
 def checkForFraud():
     '''Show the graph, and check for fraud'''
-    showGraph()
+    showGraph(isFraud())
 
-def showGraph():
+def showGraph(fraud = False):
+    '''Shows the bar graph '''
     percent = list(salesDictionaryPercent().keys())
     number = list(salesDictionaryPercent().values())
 
-    fig = plt.figure(figsize = (10, 5))
- 
-    # creating the bar plot
-    plt.bar(percent, number, color ='red',
-            width = 0.4)
+    # Create the bar chart
+    fig, ax = plt.subplots(figsize=(8, 5))
+    ax.bar(percent, number, color='red', width=0.4)
+    
+    ax.text(8.7, 30, f'Fraud: {fraud}', fontsize = 8.5)
  
     plt.xlabel("Digit")
     plt.ylabel("Percent")
-    plt.title("Check for fraud")
+    plt.title("Leading Digit Distribution")
     plt.show()
