@@ -92,3 +92,21 @@ def isFraud(localDictionary):
     else:
         return True
 
+def checkForFraud():
+    '''Show the graph, and check for fraud'''
+    showGraph()
+
+def showGraph():
+    percent = list(salesDictionaryPercent().keys())
+    number = list(salesDictionaryPercent().values())
+
+    fig = plt.figure(figsize = (10, 5))
+ 
+    # creating the bar plot
+    plt.bar(percent, number, color ='red',
+            width = 0.4)
+ 
+    plt.xlabel("Digit")
+    plt.ylabel("Percent")
+    plt.title("Check for fraud")
+    plt.show()
