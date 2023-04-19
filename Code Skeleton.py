@@ -22,7 +22,15 @@ def analyzeData():
 
 def salesDictionary():
     '''Returns a dictionary containing numbers 1 through 9 as the keys, and their values are the amount of time each number appears'''
-    numbers = { }
+    numbers = { "1": 0,
+                "2": 0,
+                "3": 0,
+                "4": 0,
+                "5": 0,
+                "6": 0,
+                "7": 0,
+                "8": 0,
+                "9": 0}
 
     # Open the sales.csv file and read each line, line by line
     with open("sales.csv") as openedFile:
@@ -33,8 +41,8 @@ def salesDictionary():
 
             if numberToAdd in numbers:
                 numbers[numberToAdd] += 1
-            else:
-                numbers[numberToAdd] = 1
+
+    print(numbers)
 
     return numbers # Return the dictionary full of the keys and values
 
