@@ -1,5 +1,27 @@
 import matplotlib.pyplot as plt
+import csv
+import os
 
+def loadData():
+    while True:
+        filePath = input("Enter the file path for sales data (sales (1).csv): ")
+        if not os.path.isfile(filePath):
+            print("Error: invalit file path. Please try again: ")
+            continue
+        if not filePath.endswith(".csv"):
+            print("Error: invalid file extension. Please try again: ")
+            continue
+
+        salesData = []
+
+        with open(filePath, 'r') as file:
+            csvReader = csv.reader(file, delimiter = ",")
+            for row in csvReader:
+                salesData.append(row[1])
+        print(salesData)
+        return salesData
+    
+    
 def printMenu():
     """
 This function prints the menu options for the customer and sales system.
@@ -13,11 +35,6 @@ This function prints the menu options for the customer and sales system.
           9. Quit\n
           Enter menu option (1-9)
           ''')
-    
-
-def analyzeData():
-    print("Analyzing data")
-
 
 def salesDictionaryCount():
     '''Returns a dictionary containing numbers 1 through 9 as the keys, and their values are the amount of time each number appears'''
@@ -41,7 +58,7 @@ def salesDictionaryCount():
             if numberToAdd in numbers:
                 numbers[numberToAdd] += 1
 
-    return numbers # Return the dictionary full of the keys and values
+    return numbers # Return the dictionary full of the keys and values. Key being the number, value being the amount of times that number shows up.
 
 def salesDictionaryPercent():
     '''Returns a dictionary containing numbers 1 through 9 as the keys, and their values are the percentage that it appears'''
@@ -68,7 +85,7 @@ def salesDictionaryPercent():
     for item in numbers:
         numbers[item] = salesDictionaryCount()[item] / totalNumberCount * 100 # Add result to list 
 
-    return numbers
+    return numbers # Return the dictionary full of the keys and values. Key being the number, value being the percentage that number shows up 
 
 
 
