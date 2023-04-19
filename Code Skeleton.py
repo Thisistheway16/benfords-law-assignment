@@ -1,5 +1,4 @@
-from operator import itemgetter
-
+import matplotlib.pyplot as plt
 
 def printMenu():
     """
@@ -20,7 +19,7 @@ def analyzeData():
     print("Analyzing data")
 
 
-def salesDictionary():
+def salesDictionaryCount():
     '''Returns a dictionary containing numbers 1 through 9 as the keys, and their values are the amount of time each number appears'''
     numbers = { "1": 0,
                 "2": 0,
@@ -42,9 +41,35 @@ def salesDictionary():
             if numberToAdd in numbers:
                 numbers[numberToAdd] += 1
 
-    print(numbers)
-
     return numbers # Return the dictionary full of the keys and values
+
+def salesDictionaryPercent():
+    '''Returns a dictionary containing numbers 1 through 9 as the keys, and their values are the percentage that it appears'''
+
+    # Declare new dictionary that contains the percentage rather than literal count
+    numbers = { "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0}
+
+    totalNumberCount = 0
+
+    for item in salesDictionaryCount():
+        # Add all numbers together
+        totalNumberCount += salesDictionaryCount()[item] # Total the numbers together
+
+
+    # Divide each number by the total amount of numbers (and multiply by 100) to get the percentage
+    for item in numbers:
+        numbers[item] = salesDictionaryCount()[item] / totalNumberCount * 100 # Add result to list 
+
+    return numbers
+
 
 
 def isFraud(localDictionary):
@@ -66,3 +91,4 @@ def isFraud(localDictionary):
         return False
     else:
         return True
+
