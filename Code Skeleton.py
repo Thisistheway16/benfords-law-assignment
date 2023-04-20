@@ -59,7 +59,7 @@ This function prints the menu options for the customer and sales system.
             print("Please type in a valid option (A number from 1-3)")
 
 def salesDictionaryCount(dataToRead):
-    '''Takes in an array of the sales numbers data. Returns a dictionary containing numbers 1 through 9 as the keys, and their values are the amount of time each number appears'''
+    '''Takes in an array of the sales numbers data. Returns a dictionary of leading numbers of the dataToRead. The key is the number we are reading, and value is the amount of times that number shows up in the dataset'''
     numbers = { "1": 0,
                 "2": 0,
                 "3": 0,
@@ -80,7 +80,7 @@ def salesDictionaryCount(dataToRead):
     return numbers
 
 def salesDictionaryPercent(dataToRead):
-    '''Returns a dictionary containing numbers 1 through 9 as the keys, and their values are the percentage that it appears'''
+    '''Takes in dataToRead as an array. Returns a dictionary based on the array containing numbers 1 through 9 as the keys, and their values are the percentage that it appears'''
 
     # Declare new dictionary that contains the percentage rather than literal count
     numbers = { "1": 0,
@@ -117,7 +117,7 @@ def showIfFraud(dataToRead):
 
 
 def isFraud(dataToRead):
-    '''Checks if the number 1 appears at least 29%, up to 32% of the time. Returns False if so, and Yes otherwise'''
+    '''Takes in dataToRead as an array. Checks if the number 1 appears at least 29%, up to 32% of the time in its leading numbers. Returns False if so, and Yes otherwise'''
 
     localDictionary = salesDictionaryCount(dataToRead)
     totalAmountOfNumbers = 0 # Represents the total amount of actual sales there are
