@@ -31,7 +31,8 @@ This function prints the menu options for the customer and sales system.
     loadDataOption = "1"
     checkForFraud = "2"
     dataAnalysisOption = "3"
-    exitCondition = "4"
+    exportData = "4"
+    exitCondition = "5"
 
     fileData = ""
 
@@ -41,7 +42,8 @@ This function prints the menu options for the customer and sales system.
 1. Load Data\n
 2. Check for Fraud\n
 3. Analyze Data (Show Graphs)\n
-4. Quit\n
+4. Export Data\n
+5. Quit\n
         ''')
         userInput = input("> ")        
 
@@ -51,6 +53,8 @@ This function prints the menu options for the customer and sales system.
             showIfFraud(fileData)
         elif userInput == dataAnalysisOption: 
             analyzeData(fileData)
+        elif userInput == exportData:
+            pass
         else:
             print("Please type in a valid option (A number from 1-3)")
 
