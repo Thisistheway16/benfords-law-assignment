@@ -49,22 +49,20 @@ This function prints the menu options for the customer and sales system.
 
         # Each function here takes in fileData as a parameter. This allows those functions to work with the File Data that the user inputs. If theres no data, it throws an error.
 
-        if fileData == "" and userInput != loadDataOption and userInput != exitCondition:
-           # Check if fileData is equal empty, meaning, the user didn't set a file path yet
-           # We check if userInput isnt exitCondition so the message below doesn't show when we are trying to exit the program
+        if fileData == "" and userInput != loadDataOption:
             print("Seems like you havn't set a path to read yet! Use option 1 to set the file data to read from!") 
-        elif userInput == loadDataOption: # If user wants to set the path 
+            continue
+
+        if userInput == loadDataOption: # If user wants to set the path 
             fileData = loadData()
-        else: 
-            # If the user did set a file path
-            if userInput == checkForFraud:
-                showIfFraud(fileData)
-            elif userInput == dataAnalysisOption: 
-                analyzeData(fileData)
-            elif userInput == exportDataOption:
-                exportData(fileData)
-            else:
-                print("Please type in a valid option (A number from 1-5)") # Invalid selection
+        elif userInput == checkForFraud:
+            showIfFraud(fileData)
+        elif userInput == dataAnalysisOption: 
+            analyzeData(fileData)
+        elif userInput == exportDataOption:
+            exportData(fileData)
+        else:
+            print("Please type in a valid option (A number from 1-5)") # Invalid selection
 
 def salesDictionaryCount(dataToRead):
     '''Takes in an array of the sales numbers data. Returns a dictionary of leading numbers of the dataToRead. The key is the number we are reading, and value is the amount of times that number shows up in the dataset'''
