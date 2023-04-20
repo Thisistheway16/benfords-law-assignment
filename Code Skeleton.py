@@ -4,20 +4,20 @@ import os
 
 def loadData():
     while True:
-        filePath = input("Enter the file path for sales data (sales (1).csv): ")
-        if not os.path.isfile(filePath):
+        filePath = input("Enter the file path for sales data (sales (1).csv): ")#This will have the code look through the chosen file
+        if not os.path.isfile(filePath): #if it is not an existing file it will not work
             print("Error: invalit file path. Please try again: ")
             continue
-        if not filePath.endswith(".csv"):
+        if not filePath.endswith(".csv"):#If the file is not csv it will not work
             print("Error: invalid file extension. Please try again: ")
             continue
 
         salesData = []
 
-        with open(filePath, 'r') as file:
+        with open(filePath, 'r') as file:# This will open the file and read it
             csvReader = csv.reader(file, delimiter = ",")
             for row in csvReader:
-                salesData.append(row[1])
+                salesData.append(row[1])# This will read only the second collumn
 
         print("[!] Your data has been loaded")
         return salesData
@@ -35,9 +35,9 @@ This function prints the menu options for the customer and sales system.
 
     fileData = ""
 
-    while userInput != exitCondition:
+    while userInput != exitCondition:#This prints the menu
         print('''
-===Welcome===
+===Welcome=== 
 1. Load Data\n
 2. Check for Fraud\n
 3. Analyze Data (Show Graphs)\n
@@ -49,7 +49,7 @@ This function prints the menu options for the customer and sales system.
 
         # Each function here takes in fileData as a parameter. This allows those functions to work with the File Data that the user inputs. If theres no data, it throws an error.
 
-        if fileData == "" and userInput != loadDataOption:
+        if fileData == "" and userInput != loadDataOption: 
             print("Seems like you havn't set a path to read yet! Use option 1 to set the file data to read from!") 
             continue
 
@@ -81,7 +81,7 @@ def salesDictionaryCount(dataToRead):
         numberToAdd = number[0] # [0] represents the first letter of the number in the sales column 
 
         if numberToAdd in numbers:
-            numbers[numberToAdd] += 1
+            numbers[numberToAdd] += 1 #will count by 1
 
     return numbers
 
