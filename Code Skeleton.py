@@ -21,8 +21,7 @@ def loadData():
 
         print("[!] Your data has been loaded")
         return salesData
-    
-    
+   
 def printMenu():
     """
 This function prints the menu options for the customer and sales system.
@@ -47,16 +46,20 @@ This function prints the menu options for the customer and sales system.
         ''')
         userInput = input("> ")        
 
-        if userInput == loadDataOption:
-            fileData = loadData()
-        elif userInput == checkForFraud:
-            showIfFraud(fileData)
-        elif userInput == dataAnalysisOption: 
-            analyzeData(fileData)
-        elif userInput == exportData:
-            pass
-        else:
-            print("Please type in a valid option (A number from 1-3)")
+        if fileData == "" and userInput != loadDataOption: # Check if fileData is equal empty, meaning, the user didn't set a file path yet
+            print("Seems like you havn't set a path to read yet! Use option 1 to set the file data to read from!")
+        else: 
+            # If the user did set a file path, OR has selected option 1, we let them through.
+            if userInput == loadDataOption:
+                fileData = loadData()
+            if userInput == checkForFraud:
+                showIfFraud(fileData)
+            elif userInput == dataAnalysisOption: 
+                analyzeData(fileData)
+            elif userInput == exportData:
+                pass
+            else:
+                print("Please type in a valid option (A number from 1-5)") # Invalid selection
 
 def salesDictionaryCount(dataToRead):
     '''Takes in an array of the sales numbers data. Returns a dictionary of leading numbers of the dataToRead. The key is the number we are reading, and value is the amount of times that number shows up in the dataset'''
