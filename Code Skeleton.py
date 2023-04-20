@@ -114,7 +114,7 @@ def salesDictionaryPercent(dataToRead):
 
 def showIfFraud(dataToRead):
     if isFraud(dataToRead):
-        print("[!] This dataset is likely to be FRAUD [!]")
+        print("[!] This dataset is likely to be FRAUD [!]")# Either message will print depending on the result of fraud
     else:
         print("[!] This dataset is likely to NOT be FRAUD [!]")
 
