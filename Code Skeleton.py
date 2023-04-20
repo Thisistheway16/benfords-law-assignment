@@ -96,7 +96,7 @@ def salesDictionaryPercent(dataToRead):
 
     # Divide each number by the total amount of numbers (and multiply by 100) to get the percentage
     for item in numbers:
-        numbers[item] = salesDictionaryCount()[item] / totalNumberCount * 100 # Add result to list 
+        numbers[item] = salesDictionaryCount(dataToRead)[item] / totalNumberCount * 100 # Add result to list 
 
     return numbers # Return the dictionary full of the keys and values. Key being the number, value being the percentage that number shows up 
 
@@ -125,8 +125,8 @@ def isFraud(dataToRead):
 
 def showGraph(dataToRead, fraud = False):
     '''Takes in an array as data to read, shows the bar graph based on the data'''
-    percent = list(salesDictionaryPercent().keys())
-    number = list(salesDictionaryPercent().values())
+    percent = list(salesDictionaryPercent(dataToRead).keys())
+    number = list(salesDictionaryPercent(dataToRead).values())
 
     # Create the bar chart
     fig, ax = plt.subplots(figsize=(8, 5))
