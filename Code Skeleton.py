@@ -124,8 +124,8 @@ def isFraud():
     else:
         return True
 
-def showGraph(fraud = False):
-    '''Shows the bar graph '''
+def showGraph(dataToRead, fraud = False):
+    '''Takes in an array as data to read, shows the bar graph based on the data'''
     percent = list(salesDictionaryPercent().keys())
     number = list(salesDictionaryPercent().values())
 
@@ -142,6 +142,6 @@ def showGraph(fraud = False):
 
 def analyzeData(dataToRead):
     '''Show the graph, and check for fraud'''
-    showGraph(isFraud())
+    showGraph(dataToRead, isFraud())
 
 printMenu()
