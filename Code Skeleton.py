@@ -28,20 +28,24 @@ This function prints the menu options for the customer and sales system.
     """
     userInput = ""
     loadDataOption = "1"
-    dataAnalysisOption = "2"
-    exitCondition = "3"
+    checkForFraud = "2"
+    dataAnalysisOption = "3"
+    exitCondition = "4"
 
     while userInput != exitCondition:
         print('''
 ===Welcome===
 1. Load Data\n
-2. Analyze Data (Check For Fraud)\n
-3. Quit\n
+2. Check for Fraud
+3. Analyze Data (Check For Fraud)\n
+4. Quit\n
         ''')
         userInput = input("> ")        
 
         if userInput == loadDataOption:
             loadData()
+        elif userInput == checkForFraud:
+            pass
         elif userInput == dataAnalysisOption: 
             analyzeData()
         else:
