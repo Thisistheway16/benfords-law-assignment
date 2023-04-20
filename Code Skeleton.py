@@ -53,8 +53,8 @@ This function prints the menu options for the customer and sales system.
         else:
             print("Please type in a valid option (A number from 1-3)")
 
-def salesDictionaryCount():
-    '''Returns a dictionary containing numbers 1 through 9 as the keys, and their values are the amount of time each number appears'''
+def salesDictionaryCount(dataToRead):
+    '''Takes in an array of the sales numbers data. Returns a dictionary containing numbers 1 through 9 as the keys, and their values are the amount of time each number appears'''
     numbers = { "1": 0,
                 "2": 0,
                 "3": 0,
@@ -65,17 +65,14 @@ def salesDictionaryCount():
                 "8": 0,
                 "9": 0}
 
-    # Open the sales.csv file and read each line, line by line
-    with open("sales.csv") as openedFile:
-        for line in openedFile:
+    for number in dataToRead:
+         # Get the digit to add to the dictionary
+        numberToAdd = number[0] # [0] represents the first letter of the number in the sales column 
 
-            # Get the digit to add to the dictionary
-            numberToAdd = line.split(',')[1][0] # [1] represents the sales column, [0] represents the first letter of the number in the sales column 
+        if numberToAdd in numbers:
+            numbers[numberToAdd] += 1
 
-            if numberToAdd in numbers:
-                numbers[numberToAdd] += 1
-
-    return numbers # Return the dictionary full of the keys and values. Key being the number, value being the amount of times that number shows up.
+    return numbers
 
 def salesDictionaryPercent():
     '''Returns a dictionary containing numbers 1 through 9 as the keys, and their values are the percentage that it appears'''
@@ -127,10 +124,6 @@ def isFraud():
     else:
         return True
 
-def analyzeData():
-    '''Show the graph, and check for fraud'''
-    showGraph(isFraud())
-
 def showGraph(fraud = False):
     '''Shows the bar graph '''
     percent = list(salesDictionaryPercent().keys())
@@ -146,5 +139,9 @@ def showGraph(fraud = False):
     plt.ylabel("Percent")
     plt.title("Leading Digit Distribution")
     plt.show()
+
+def analyzeData(dataToRead):
+    '''Show the graph, and check for fraud'''
+    showGraph(isFraud())
 
 printMenu()
