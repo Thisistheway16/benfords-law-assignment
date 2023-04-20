@@ -18,7 +18,6 @@ def loadData():
             csvReader = csv.reader(file, delimiter = ",")
             for row in csvReader:
                 salesData.append(row[1])
-        print(salesData)
         return salesData
     
     
@@ -32,18 +31,21 @@ This function prints the menu options for the customer and sales system.
     dataAnalysisOption = "3"
     exitCondition = "4"
 
+    fileData = ""
+
     while userInput != exitCondition:
         print('''
 ===Welcome===
 1. Load Data\n
-2. Check for Fraud
+2. Check for Fraud\n
 3. Analyze Data (Check For Fraud)\n
 4. Quit\n
         ''')
         userInput = input("> ")        
 
         if userInput == loadDataOption:
-            loadData()
+            fileData = loadData()
+            print(fileData)
         elif userInput == checkForFraud:
             pass
         elif userInput == dataAnalysisOption: 
