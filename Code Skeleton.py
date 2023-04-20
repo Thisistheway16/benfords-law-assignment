@@ -30,7 +30,7 @@ This function prints the menu options for the customer and sales system.
     loadDataOption = "1"
     checkForFraud = "2"
     dataAnalysisOption = "3"
-    exportData = "4"
+    exportDataOption = "4"
     exitCondition = "5"
 
     fileData = ""
@@ -44,20 +44,25 @@ This function prints the menu options for the customer and sales system.
 4. Export Data\n
 5. Quit\n
         ''')
+
         userInput = input("> ")        
 
-        if fileData == "" and userInput != loadDataOption: # Check if fileData is equal empty, meaning, the user didn't set a file path yet
-            print("Seems like you havn't set a path to read yet! Use option 1 to set the file data to read from!")
+        # Each function here takes in fileData as a parameter. This allows those functions to work with the File Data that the user inputs. If theres no data, it throws an error.
+
+        if fileData == "" and userInput != loadDataOption and userInput != exitCondition:
+           # Check if fileData is equal empty, meaning, the user didn't set a file path yet
+           # We check if userInput isnt exitCondition so the message below doesn't show when we are trying to exit the program
+            print("Seems like you havn't set a path to read yet! Use option 1 to set the file data to read from!") 
+        elif userInput == loadDataOption: # If user wants to set the path 
+            fileData = loadData()
         else: 
-            # If the user did set a file path, OR has selected option 1, we let them through.
-            if userInput == loadDataOption:
-                fileData = loadData()
+            # If the user did set a file path
             if userInput == checkForFraud:
                 showIfFraud(fileData)
             elif userInput == dataAnalysisOption: 
                 analyzeData(fileData)
-            elif userInput == exportData:
-                pass
+            elif userInput == exportDataOption:
+                exportData(fileData)
             else:
                 print("Please type in a valid option (A number from 1-5)") # Invalid selection
 
@@ -159,5 +164,22 @@ def showGraph(dataToRead, fraud = False):
 def analyzeData(dataToRead):
     '''Show the graph, and check for fraud'''
     showGraph(dataToRead, isFraud(dataToRead))
+
+def exportData(dataToRead):
+    '''Creates a csv file named results.csv that contains an overview of the data'''
+
+    dict = salesDictionaryPercent(dataToRead) # Get the dictionary of data to read
+    output = ""
+    for number in dict: # For each number, add a new line with its information
+        output += f"{number}: {round(dict[number], 1)}%\n"
+
+    f = open(f"{os.path.abspath(os.getcwd())}/results.csv", "w") 
+    f.write(output) # Write the file 
+    f.close()
+
+    print("Your file has been created!")
+    print("Click enter to go back...")
+    input()
+
 
 printMenu()
