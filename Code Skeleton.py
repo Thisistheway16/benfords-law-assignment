@@ -45,11 +45,10 @@ This function prints the menu options for the customer and sales system.
 
         if userInput == loadDataOption:
             fileData = loadData()
-            print(fileData)
         elif userInput == checkForFraud:
             pass
         elif userInput == dataAnalysisOption: 
-            analyzeData()
+            analyzeData(fileData)
         else:
             print("Please type in a valid option (A number from 1-3)")
 
