@@ -102,10 +102,10 @@ def salesDictionaryPercent():
 
 
 
-def isFraud():
+def isFraud(dataToRead):
     '''Checks if the number 1 appears at least 29%, up to 32% of the time. Returns False if so, and Yes otherwise'''
 
-    localDictionary = salesDictionaryCount()
+    localDictionary = salesDictionaryCount(dataToRead)
     totalAmountOfNumbers = 0 # Represents the total amount of actual sales there are
     amountOfTimesOneAppeared = localDictionary['1']
 
@@ -141,6 +141,6 @@ def showGraph(dataToRead, fraud = False):
 
 def analyzeData(dataToRead):
     '''Show the graph, and check for fraud'''
-    showGraph(dataToRead, isFraud())
+    showGraph(dataToRead, isFraud(dataToRead))
 
 printMenu()
