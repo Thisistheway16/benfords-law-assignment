@@ -18,6 +18,8 @@ def loadData():
             csvReader = csv.reader(file, delimiter = ",")
             for row in csvReader:
                 salesData.append(row[1])
+
+        print("[!] Your data has been loaded")
         return salesData
     
     
@@ -38,7 +40,7 @@ This function prints the menu options for the customer and sales system.
 ===Welcome===
 1. Load Data\n
 2. Check for Fraud\n
-3. Analyze Data (Check For Fraud)\n
+3. Analyze Data (Show Graphs)\n
 4. Quit\n
         ''')
         userInput = input("> ")        
@@ -46,7 +48,7 @@ This function prints the menu options for the customer and sales system.
         if userInput == loadDataOption:
             fileData = loadData()
         elif userInput == checkForFraud:
-            pass
+            showIfFraud(fileData)
         elif userInput == dataAnalysisOption: 
             analyzeData(fileData)
         else:
@@ -100,6 +102,14 @@ def salesDictionaryPercent(dataToRead):
 
     return numbers # Return the dictionary full of the keys and values. Key being the number, value being the percentage that number shows up 
 
+def showIfFraud(dataToRead):
+    if isFraud(dataToRead):
+        print("[!] This dataset is likely to be FRAUD [!]")
+    else:
+        print("[!] This dataset is likely to NOT be FRAUD [!]")
+
+    print("Click enter to go back...")
+    input()
 
 
 def isFraud(dataToRead):
