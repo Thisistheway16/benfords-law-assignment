@@ -73,7 +73,7 @@ def salesDictionaryCount(dataToRead):
 
     return numbers
 
-def salesDictionaryPercent():
+def salesDictionaryPercent(dataToRead):
     '''Returns a dictionary containing numbers 1 through 9 as the keys, and their values are the percentage that it appears'''
 
     # Declare new dictionary that contains the percentage rather than literal count
@@ -89,9 +89,9 @@ def salesDictionaryPercent():
 
     totalNumberCount = 0
 
-    for item in salesDictionaryCount():
+    for item in salesDictionaryCount(dataToRead):
         # Add all numbers together
-        totalNumberCount += salesDictionaryCount()[item] # Total the numbers together
+        totalNumberCount += salesDictionaryCount(dataToRead)[item] # Total the numbers together
 
 
     # Divide each number by the total amount of numbers (and multiply by 100) to get the percentage
