@@ -169,7 +169,7 @@ def exportData(dataToRead):
     dict = salesDictionaryPercent(dataToRead) # Get the dictionary of data to read
     output = ""
     for number in dict: # For each number, add a new line with its information
-        output += f"{number}: {round(dict[number], 1)}%\n"
+        output += f"{number} = {round(dict[number], 1)}%\n"
 
     f = open(f"{os.path.abspath(os.getcwd())}/results.csv", "w") 
     f.write(output) # Write the file 
